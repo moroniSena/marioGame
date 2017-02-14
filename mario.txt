@@ -1,0 +1,1173 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace WindowsFormsApplication1
+{
+    public partial class Form1 : Form
+    {
+
+        bool right;
+
+        bool left;
+
+        bool left2;
+
+        bool right2;
+
+        bool left3;
+
+        bool right3;
+
+        bool left4;
+
+        bool right4;
+
+        bool koopaDeath;
+
+        bool goomba2Death;
+
+        bool goombaDeath;
+
+        bool coin;
+
+        bool coin02;
+
+        bool coin03;
+
+        bool coin04;
+
+        bool coin05;
+
+        bool coin06;
+
+        bool coin07;
+
+        bool coin08;
+
+        bool jump;
+        
+        bool gameEnd = false;
+
+        bool gameDone;
+
+        int g = 15;
+
+        int force;
+
+        int index;
+
+        int points = 10000;
+
+        int savedScore;
+
+        int one = 1;
+
+        int power = 5;
+        
+
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            goomba.Top = screen.Height - goomba.Height;
+
+            goomba2.Top = screen.Height - goomba2.Height;
+
+            koopa.Top = screen.Height - koopa.Height;
+
+            player.Top = screen.Height - player.Height;
+
+            left2 = true;
+
+            koopa.Left += 10;
+            
+            left4 = true;
+            
+            //block.Top = screen.Height - block.Height;
+
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right && gameEnd == false)
+            {
+                right = true;
+            }
+            if (e.KeyCode == Keys.Left && gameEnd == false)
+            {
+                left = true;  
+            }
+            if (jump != true)
+            {
+                if (e.KeyCode == Keys.Space && gameEnd == false)
+                {
+                    jump = true;
+                    force = g;
+                }
+            }
+        }
+
+        private void SideCollision()
+        {
+            //block1
+            if (player.Right > block.Left && player.Left < block.Right - player.Width / 1 && player.Bottom < block.Bottom && player.Bottom > block.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block.Right && player.Right > block.Left + player.Width / 1 && player.Bottom < block.Bottom && player.Bottom > block.Top)
+            {
+                left = false;
+            }
+            //block2
+            if (player.Right > block2.Left && player.Left < block2.Right - player.Width / 1 && player.Bottom < block2.Bottom && player.Bottom > block2.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block2.Right && player.Right > block2.Left + player.Width / 1 && player.Bottom < block2.Bottom && player.Bottom > block2.Top)
+            {
+                left = false;
+            }
+            //block3
+            if (player.Right > block3.Left && player.Left < block3.Right - player.Width / 1 && player.Bottom < block3.Bottom && player.Bottom > block3.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block3.Right && player.Right > block3.Left + player.Width / 1 && player.Bottom < block3.Bottom && player.Bottom > block3.Top)
+            {
+                left = false;
+            }
+            //block4
+            if (player.Right > block4.Left && player.Left < block4.Right - player.Width / 1 && player.Bottom < block4.Bottom && player.Bottom > block4.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block4.Right && player.Right > block4.Left + player.Width / 1 && player.Bottom < block4.Bottom && player.Bottom > block4.Top)
+            {
+                left = false;
+            }
+            //block5
+            if (player.Right > block5.Left && player.Left < block5.Right - player.Width / 1 && player.Bottom < block5.Bottom && player.Bottom > block5.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block5.Right && player.Right > block5.Left + player.Width / 1 && player.Bottom < block5.Bottom && player.Bottom > block5.Top)
+            {
+                left = false;
+            }
+            //block6
+            if (player.Right > block6.Left && player.Left < block6.Right - player.Width / 1 && player.Bottom < block6.Bottom && player.Bottom > block6.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block6.Right && player.Right > block6.Left + player.Width / 1 && player.Bottom < block6.Bottom && player.Bottom > block6.Top)
+            {
+                left = false;
+            }
+            //block8
+            if (player.Right > block8.Left && player.Left < block8.Right - player.Width / 1 && player.Bottom < block8.Bottom && player.Bottom > block8.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block8.Right && player.Right > block8.Left + player.Width / 1 && player.Bottom < block8.Bottom && player.Bottom > block8.Top)
+            {
+                left = false;
+            }
+            //block9
+            if (player.Right > block9.Left && player.Left < block9.Right - player.Width / 1 && player.Bottom < block9.Bottom && player.Bottom > block9.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block9.Right && player.Right > block9.Left + player.Width / 1 && player.Bottom < block9.Bottom && player.Bottom > block9.Top)
+            {
+                left = false;
+            }
+            //block10
+            if (player.Right > block10.Left && player.Left < block10.Right - player.Width / 1 && player.Bottom < block10.Bottom && player.Bottom > block10.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block10.Right && player.Right > block10.Left + player.Width / 1 && player.Bottom < block10.Bottom && player.Bottom > block10.Top)
+            {
+                left = false;
+            }
+            //block11
+            if (player.Right > block11.Left && player.Left < block11.Right - player.Width / 1 && player.Bottom < block11.Bottom && player.Bottom > block11.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block11.Right && player.Right > block11.Left + player.Width / 1 && player.Bottom < block11.Bottom && player.Bottom > block11.Top)
+            {
+                left = false;
+            }
+            //block12
+            if (player.Right > block12.Left && player.Left < block12.Right - player.Width / 1 && player.Bottom < block12.Bottom && player.Bottom > block12.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block12.Right && player.Right > block12.Left + player.Width / 1 && player.Bottom < block12.Bottom && player.Bottom > block12.Top)
+            {
+                left = false;
+            }
+            //block13
+            if (player.Right > block13.Left && player.Left < block13.Right - player.Width / 1 && player.Bottom < block13.Bottom && player.Bottom > block13.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block13.Right && player.Right > block13.Left + player.Width / 1 && player.Bottom < block13.Bottom && player.Bottom > block13.Top)
+            {
+                left = false;
+            }
+            //block14
+            if (player.Right > block14.Left && player.Left < block14.Right - player.Width / 1 && player.Bottom < block14.Bottom && player.Bottom > block14.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block14.Right && player.Right > block14.Left + player.Width / 1 && player.Bottom < block14.Bottom && player.Bottom > block14.Top)
+            {
+                left = false;
+            }
+            //block15
+            if (player.Right > block15.Left && player.Left < block15.Right - player.Width / 1 && player.Bottom < block15.Bottom && player.Bottom > block15.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block15.Right && player.Right > block15.Left + player.Width / 1 && player.Bottom < block15.Bottom && player.Bottom > block15.Top)
+            {
+                left = false;
+            }
+            //block16
+            if (player.Right > block16.Left && player.Left < block16.Right - player.Width / 1 && player.Bottom < block16.Bottom && player.Bottom > block16.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block16.Right && player.Right > block16.Left + player.Width / 1 && player.Bottom < block16.Bottom && player.Bottom > block16.Top)
+            {
+                left = false;
+            }
+            //block17
+            if (player.Right > block17.Left && player.Left < block17.Right - player.Width / 2 &&  player.Bottom > block17.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block17.Right && player.Right > block17.Left + player.Width / 2 && player.Bottom > block17.Top)
+            {
+                left = false;
+            }
+            //block18
+            if (player.Right > block18.Left && player.Left < block18.Right - player.Width / 2 && player.Bottom > block18.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block18.Right && player.Right > block18.Left + player.Width / 2 && player.Bottom > block18.Top)
+            {
+                left = false;
+            }
+            //block19
+            if (player.Right > block19.Left && player.Left < block19.Right - player.Width / 2 && player.Bottom > block19.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block19.Right && player.Right > block19.Left + player.Width / 2 && player.Bottom > block19.Top)
+            {
+                left = false;
+            }
+            //block20
+            if (player.Right > block20.Left && player.Left < block20.Right - player.Width / 2 && player.Bottom < block20.Bottom && player.Bottom > block20.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block20.Right && player.Right > block20.Left + player.Width / 2 && player.Bottom < block20.Bottom && player.Bottom > block20.Top)
+            {
+                left = false;
+            }
+            //block21
+            if (player.Right > block21.Left && player.Left < block21.Right - player.Width / 2 && player.Bottom < block21.Bottom && player.Bottom > block21.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block21.Right && player.Right > block21.Left + player.Width / 2 && player.Bottom < block21.Bottom && player.Bottom > block21.Top)
+            {
+                left = false;
+            }
+            //block22
+            if (player.Right > block22.Left && player.Left < block22.Right - player.Width / 2 && player.Bottom < block22.Bottom && player.Bottom > block22.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block22.Right && player.Right > block22.Left + player.Width / 2 && player.Bottom < block22.Bottom && player.Bottom > block22.Top)
+            {
+                left = false;
+            }
+            //block25
+            if (player.Right > block25.Left && player.Left < block25.Right - player.Width / 2 && player.Bottom < block25.Bottom && player.Bottom > block25.Top)
+            {
+                right = false;
+            }
+            if (player.Left < block25.Right && player.Right > block25.Left + player.Width / 2 && player.Bottom < block25.Bottom && player.Bottom > block25.Top)
+            {
+                left = false;
+            }
+            //coin1
+            if (player.Right > coin1.Left && player.Left < coin1.Right - player.Width / 2 && player.Bottom < coin1.Bottom && player.Bottom > coin1.Top)
+            {
+                while (coin == false)
+                {
+                    coin1.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin = true;
+                }
+            }
+            if (player.Left < coin1.Right && player.Right > coin1.Left + player.Width / 2 && player.Bottom < coin1.Bottom && player.Bottom > coin1.Top)
+            {
+                while (coin == false)
+                {
+                    coin1.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin = true;
+                }
+            }
+            //coin2
+            if (player.Right > coin2.Left && player.Left < coin2.Right - player.Width / 2 && player.Bottom < coin2.Bottom && player.Bottom > coin2.Top)
+            {
+                while (coin02 == false)
+                {
+                    coin2.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin02 = true;
+                }
+            }
+            if (player.Left < coin2.Right && player.Right > coin2.Left + player.Width / 2 && player.Bottom < coin2.Bottom && player.Bottom > coin2.Top)
+            {
+                while (coin02 == false)
+                {
+                    coin2.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin02 = true;
+                }
+            }
+            //coin3
+            if (player.Right > coin3.Left && player.Left < coin3.Right - player.Width / 2 && player.Bottom < coin3.Bottom && player.Bottom > coin3.Top)
+            {
+                while (coin03 == false)
+                {
+                    coin3.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin03 = true;
+                }
+            }
+            if (player.Left < coin3.Right && player.Right > coin3.Left + player.Width / 2 && player.Bottom < coin3.Bottom && player.Bottom > coin3.Top)
+            {
+                while (coin03 == false)
+                {
+                    coin3.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin03 = true;
+                }
+            }
+            //coin4
+            if (player.Right > coin4.Left && player.Left < coin4.Right - player.Width / 2 && player.Bottom < coin4.Bottom && player.Bottom > coin4.Top)
+            {
+                while (coin04 == false)
+                {
+                    coin4.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin04 = true;
+                }
+            }
+            if (player.Left < coin4.Right && player.Right > coin4.Left + player.Width / 2 && player.Bottom < coin4.Bottom && player.Bottom > coin4.Top)
+            {
+                while (coin04 == false)
+                {
+                    coin4.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin04 = true;
+                }
+            }
+            //coin5
+            if (player.Right > coin5.Left && player.Left < coin5.Right - player.Width / 2 && player.Bottom < coin5.Bottom && player.Bottom > coin5.Top)
+            {
+                while (coin05 == false)
+                {
+                    coin5.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin05 = true;
+                }
+            }
+            if (player.Left < coin5.Right && player.Right > coin5.Left + player.Width / 2 && player.Bottom < coin5.Bottom && player.Bottom > coin5.Top)
+            {
+                while (coin05 == false)
+                {
+                    coin5.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin05 = true;
+                }
+            }
+            //coin6
+            if (player.Right > coin6.Left && player.Left < coin6.Right - player.Width / 2 && player.Bottom < coin6.Bottom && player.Bottom > coin6.Top)
+            {
+                while (coin06 == false)
+                {
+                    coin6.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin06 = true;
+                }
+            }
+            if (player.Left < coin6.Right && player.Right > coin6.Left + player.Width / 2 && player.Bottom < coin6.Bottom && player.Bottom > coin6.Top)
+            {
+                while (coin06 == false)
+                {
+                    coin6.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin06 = true;
+                }
+            }
+            //coin7
+            if (player.Right > coin7.Left && player.Left < coin7.Right - player.Width / 2 && player.Bottom < coin7.Bottom && player.Bottom > coin7.Top)
+            {
+                while (coin07 == false)
+                {
+                    coin7.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin07 = true;
+                }
+            }
+            if (player.Left < coin7.Right && player.Right > coin7.Left + player.Width / 2 && player.Bottom < coin7.Bottom && player.Bottom > coin7.Top)
+            {
+                while (coin07 == false)
+                {
+                    coin7.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin07 = true;
+                }
+            }
+            //coin8
+            if (player.Right > coin8.Left && player.Left < coin8.Right - player.Width / 2 && player.Bottom < coin8.Bottom && player.Bottom > coin8.Top)
+            {
+                while (coin08 == false)
+                {
+                    coin8.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin08 = true;
+                }
+            }
+            if (player.Left < coin8.Right && player.Right > coin8.Left + player.Width / 2 && player.Bottom < coin8.Bottom && player.Bottom > coin8.Top)
+            {
+                while (coin08 == false)
+                {
+                    coin8.Image = Image.FromFile("transparent2.jpg");
+                    savedScore += 1000;
+                    coin08 = true;
+                }
+            }
+            //goomba
+            if (goomba.Right > block17.Left && goomba.Left < block17.Right - goomba.Width / 2 && goomba.Bottom > block17.Top)
+            {
+                if (goomba.Image != Image.FromFile("transparent2.jpg"))
+                {
+                    left2 = true;
+
+                    right2 = false;
+                }
+            }
+            if (goomba.Left < block18.Right && goomba.Right > block18.Left + goomba.Width / 2 && goomba.Bottom > block18.Top)
+            {
+                if (goomba.Image != Image.FromFile("transparent2.jpg"))
+                {
+                    left2 = false;
+
+                    right2 = true;
+                }
+            }
+            //goomba2
+            if (goomba2.Right > block20.Left && goomba2.Left < block20.Right - goomba2.Width / 2 && goomba2.Bottom > block20.Top)
+            {
+                if (goomba2.Image != Image.FromFile("transparent2.jpg"))
+                {
+                    left4 = true;
+
+                    right4 = false;
+                }
+            }
+            if (goomba2.Left < block19.Right && goomba2.Right > block19.Left + goomba2.Width / 2 && goomba2.Bottom > block19.Top)
+            {
+                if (goomba2.Image != Image.FromFile("transparent2.jpg"))
+                {
+                    left4 = false;
+
+                    right4 = true;
+                }
+            }
+            //koopa
+            if (koopa.Right > block18.Left && koopa.Left < block18.Right - koopa.Width / 2 && koopa.Bottom > block18.Top)
+            {
+                    left3 = true;
+
+                    right3 = false;
+
+                if (koopaDeath == true)
+                {
+                    koopa.Image = Image.FromFile("shell.gif");
+                }
+                else
+                { 
+                    koopa.Image = Image.FromFile("koopamoving.gif");
+                }
+                
+
+            }
+            if (koopa.Left < block17.Right && koopa.Right > block17.Left + koopa.Width / 2 && koopa.Bottom > block17.Top)
+            {
+                    left3 = false;
+
+                    right3 = true;
+
+
+                if (koopaDeath == true)
+                {
+                    koopa.Image = Image.FromFile("shell.gif");
+                }
+                else
+                {
+                    koopa.Image = Image.FromFile("koopaR.gif");
+                }
+            }
+            //mario death
+            if (goomba.Right > player.Left && goomba.Left < player.Right && goomba.Bottom > player.Top && player.Top == goomba.Top)
+            {
+                if (goombaDeath == false)
+                {
+                    gameEnd = true;
+                    
+                    right2 = false;
+
+                    left2 = false;
+
+                    one = 0;
+                
+                    gameOver.Image = Image.FromFile("gameover.png");
+
+                    gameOver.BringToFront();
+                }
+                
+            }
+            if (goomba2.Right > player.Left && goomba2.Left < player.Right && goomba2.Bottom > player.Top && player.Top == goomba2.Top)
+            {
+                if (goomba2Death == false)
+                {
+                    gameEnd = true;
+
+                    right4 = false;
+
+                    left4 = false;
+
+                    one = 0;
+
+                    gameOver.Image = Image.FromFile("gameover.png");
+
+                    gameOver.BringToFront();
+                    
+                }
+
+            }
+            else
+            {
+                gameEnd = false;
+                one = 1;
+            }
+            if (koopa.Right > player.Left && koopa.Left < player.Right && koopa.Bottom > player.Top && player.Top == koopa.Top)
+            {
+                    gameEnd = true;
+
+                    one = 0;
+
+                    left3 = false;
+
+                    right3 = false;
+
+                gameOver.Image = Image.FromFile("gameover.png");
+
+                gameOver.BringToFront();
+                
+            }
+            if (koopa.Left < player.Right && goomba.Right > player.Left && goomba.Bottom > player.Top && player.Top == koopa.Top)
+            {
+                
+                    gameEnd = true;
+
+                    one = 0;
+
+                    left3 = false;
+
+                    right3 = false;
+
+                gameOver.Image = Image.FromFile("gameover.png");
+
+                gameOver.BringToFront();
+                
+            }
+            //win
+            if (player.Right > star.Left && player.Left < star.Right - player.Width / 3 && player.Bottom < star.Bottom)
+            {
+                gameDone = true;
+                
+                if (gameDone == true)
+                {
+                    one = 0;
+                    
+                    gameEnd = true;
+
+                    gameOver.Image = Image.FromFile("gameover.png");
+
+                    gameOver.BringToFront();
+                    
+                }
+            }
+            if (player.Left < star.Right && player.Right > star.Left + player.Width / 3 && player.Bottom < star.Bottom)
+            {
+                gameDone = true;
+                
+                if (gameDone == true)
+                {
+                    one = 0;
+                    
+                    gameEnd = true;
+
+                    gameOver.Image = Image.FromFile("gameover.png");
+
+                    gameOver.BringToFront();
+                    
+                }
+                
+            }
+        }
+
+        private void HeadCollision()
+        {
+            if (player.Left + player.Width > block.Left && player.Left + player.Width < block.Left + block.Width + player.Width && player.Top - block.Bottom <= 10 && player.Top - block.Top > -10 )
+            {
+                force = -1;
+            }
+            
+        }
+
+        private void TopCollision()
+        {
+            //block1
+            if (player.Left + player.Width  > block.Left && player.Left + player.Width < block.Left + block.Width + player.Width && player.Top + player.Height >= block.Top && player.Top < block.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+
+            //if (!(player.Left + player.Width > block.Left && player.Left + player.Width < block.Left + block.Width + player.Width) && player.Top + player.Height >= block.Top && player.Top < block.Top )
+           // {
+               // jump = true;
+            //}
+            //block2
+            if (player.Left + player.Width > block2.Left && player.Left + player.Width < block2.Left + block2.Width + player.Width && player.Top + player.Height >= block2.Top && player.Top < block2.Top)
+            { 
+                force = 0;
+                jump = false;
+                player.Top = block2.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block3
+            if (player.Left + player.Width > block3.Left && player.Left + player.Width < block3.Left + block3.Width + player.Width && player.Top + player.Height >= block3.Top && player.Top < block3.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block3.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block4
+            if (player.Left + player.Width > block4.Left && player.Left + player.Width < block4.Left + block4.Width + player.Width && player.Top + player.Height >= block4.Top && player.Top < block4.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block4.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block5
+            if (player.Left + player.Width > block5.Left && player.Left + player.Width < block5.Left + block5.Width + player.Width && player.Top + player.Height >= block5.Top && player.Top < block5.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block5.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block6
+            if (player.Left + player.Width > block6.Left && player.Left + player.Width < block6.Left + block6.Width + player.Width && player.Top + player.Height >= block6.Top && player.Top < block6.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block6.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block8
+            if (player.Left + player.Width > block8.Left && player.Left + player.Width < block8.Left + block8.Width + player.Width && player.Top + player.Height >= block8.Top && player.Top < block8.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block8.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block9
+            if (player.Left + player.Width > block9.Left && player.Left + player.Width < block9.Left + block9.Width + player.Width && player.Top + player.Height >= block9.Top && player.Top < block9.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block9.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block10
+            if (player.Left + player.Width > block10.Left && player.Left + player.Width < block10.Left + block10.Width + player.Width && player.Top + player.Height >= block10.Top && player.Top < block10.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block10.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block11
+            if (player.Left + player.Width > block11.Left && player.Left + player.Width < block11.Left + block11.Width + player.Width && player.Top + player.Height >= block11.Top && player.Top < block11.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block11.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block12
+            if (player.Left + player.Width > block12.Left && player.Left + player.Width < block12.Left + block12.Width + player.Width && player.Top + player.Height >= block12.Top && player.Top < block12.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block12.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block13
+            if (player.Left + player.Width > block13.Left && player.Left + player.Width < block13.Left + block13.Width + player.Width && player.Top + player.Height >= block13.Top && player.Top < block13.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block13.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+
+            }
+            //block14
+            if (player.Left + player.Width > block14.Left && player.Left + player.Width < block14.Left + block14.Width + player.Width && player.Top + player.Height >= block14.Top && player.Top < block14.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block14.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block15
+            if (player.Left + player.Width > block15.Left && player.Left + player.Width < block15.Left + block15.Width + player.Width && player.Top + player.Height >= block15.Top && player.Top < block15.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block15.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block16
+            if (player.Left + player.Width > block16.Left && player.Left + player.Width < block16.Left + block16.Width + player.Width && player.Top + player.Height >= block16.Top && player.Top < block16.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block16.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block17
+            if (player.Left + player.Width > block17.Left && player.Left + player.Width < block17.Left + block17.Width + player.Width && player.Top + player.Height >= block17.Top && player.Top < block17.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block17.Location.Y - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block18
+            if (player.Left + player.Width > block18.Left && player.Left + player.Width < block18.Left + block18.Width + player.Width && player.Top + player.Height >= block18.Top && player.Top < block18.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block18.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block20
+            if (player.Left + player.Width > block20.Left && player.Left + player.Width < block20.Left + block20.Width + player.Width && player.Top + player.Height >= block20.Top && player.Top < block20.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block20.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block21
+            if (player.Left + player.Width > block21.Left && player.Left + player.Width < block21.Left + block21.Width + player.Width && player.Top + player.Height >= block21.Top && player.Top < block21.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block21.Location.Y - player.Height;
+                g = 15;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block22
+            if (player.Left + player.Width > block22.Left && player.Left + player.Width < block22.Left + block22.Width + player.Width && player.Top + player.Height >= block22.Top && player.Top < block22.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block22.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block23
+            if (player.Left + player.Width > block23.Left && player.Left + player.Width < block23.Left + block23.Width + player.Width && player.Top + player.Height >= block23.Top && player.Top < block23.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block23.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block24
+            if (player.Left + player.Width > block24.Left && player.Left + player.Width < block24.Left + block24.Width + player.Width && player.Top + player.Height >= block24.Top && player.Top < block24.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block24.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block25
+            if (player.Left + player.Width > block25.Left && player.Left + player.Width < block25.Left + block25.Width + player.Width && player.Top + player.Height >= block25.Top && player.Top < block25.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block25.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block26
+            if (player.Left + player.Width > block26.Left && player.Left + player.Width < block26.Left + block26.Width + player.Width && player.Top + player.Height >= block26.Top && player.Top < block26.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block26.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block27
+            if (player.Left + player.Width > block27.Left && player.Left + player.Width < block27.Left + block27.Width + player.Width && player.Top + player.Height >= block27.Top && player.Top < block27.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block27.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block28
+            if (player.Left + player.Width > block28.Left && player.Left + player.Width < block28.Left + block28.Width + player.Width && player.Top + player.Height >= block28.Top && player.Top < block28.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block28.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //block29
+            if (player.Left + player.Width > block29.Left && player.Left + player.Width < block29.Left + block29.Width + player.Width && player.Top + player.Height >= block29.Top && player.Top < block29.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block29.Location.Y - player.Height;
+
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //goomba death
+            if (player.Left + player.Width > goomba.Left && player.Left + player.Width < goomba.Left + goomba.Width + player.Width && player.Top + player.Height >= goomba.Top && player.Top < goomba.Top)
+            {
+                force = 7;
+                jump = true;
+                player.Top = block18.Location.Y - player.Height;
+                right2 = false;
+                left2 = true;
+                goomba.Image = Image.FromFile("transparent2.jpg");
+                right = true;
+                goombaDeath = true;
+                savedScore += 1000;
+            }
+            //goomba2 death
+            if (player.Left + player.Width > goomba2.Left && player.Left + player.Width < goomba2.Left + goomba2.Width + player.Width && player.Top + player.Height >= goomba2.Top && player.Top < goomba2.Top)
+            {
+                force = 7;
+                jump = true;
+                player.Top = block18.Location.Y - player.Height;
+                right4 = false;
+                left4 = true;
+                goomba2.Image = Image.FromFile("transparent2.jpg");
+                player.Left -= 10;
+                goomba2Death = true;
+                savedScore += 1000;
+            }
+            //koopa death
+            if (player.Left + player.Width > koopa.Left && player.Left + player.Width < koopa.Left + koopa.Width + player.Width && player.Top + player.Height >= koopa.Top && player.Top < koopa.Top)
+            {
+                force = 7;
+                jump = true;
+                player.Top = block18.Location.Y - player.Height;
+                koopa.Image = Image.FromFile("shell.gif");
+                savedScore += 1000;
+                koopaDeath = true;
+            }
+            //block19
+            if (player.Left + player.Width > block19.Left && player.Left + player.Width < block19.Left + block19.Width + player.Width && player.Top + player.Height >= block19.Top && player.Top < block19.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = block19.Location.Y - player.Height;
+                g = 15;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+            //tramp
+            if (player.Left + player.Width > tramp.Left && player.Left + player.Width < tramp.Left + tramp.Width + player.Width && player.Top + player.Height >= tramp.Top && player.Top < tramp.Top)
+            {
+                force = 0;
+                jump = false;
+                player.Top = tramp.Location.Y - player.Height;
+                g = 40;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+            }
+
+        }
+    
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            SideCollision();
+
+            index++;
+
+            points -= one;
+
+            score2.Text = Convert.ToString(savedScore);
+
+            score.Text = Convert.ToString(points);
+
+            if (left2 == true)
+            {
+                goomba.Left -= 3;
+            }
+
+            if (right2 == true)
+            {
+                goomba.Left += 3;
+            }
+            if (left4 == true)
+            {
+                goomba2.Left -= 3;
+            }
+
+            if (right4 == true)
+            {
+                goomba2.Left += 3;
+            }
+            if (left3 == true)
+            {
+                koopa.Left -= 3;
+            }
+
+            if (right3 == true)
+            {
+                koopa.Left += 3;
+            }
+            if (right == true && index % 15 == 0)
+            {
+                player.Image = Image.FromFile("Mario_walk_smb.gif");
+            }
+
+            if (left == true && index % 15 == 0)
+            {
+                player.Image = Image.FromFile("walkL.gif");
+            }
+
+            if (right == true)
+            {
+                player.Left += 5;
+            }
+            if (left == true)
+            {
+                player.Left -= 5;
+            }
+            if (jump == true)
+            {
+                player.Top -= force;
+                force --;
+            }
+            if (player.Top + player.Height >= screen.Height)
+            {
+                player.Top = screen.Height - player.Height;
+
+                if (jump == true)
+                {
+                    player.Image = Image.FromFile("pixel-mario.png");
+                }
+
+                jump = false;
+            }
+            else
+            {
+                player.Top += power;
+            }
+
+            HeadCollision();
+
+            TopCollision();
+            
+        }
+
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right)
+            {
+                right = false;
+                
+                    player.Image = Image.FromFile("pixel-mario.png");
+               
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                left = false;
+                
+                    player.Image = Image.FromFile("pixel-marioL.png");
+               
+            }
+        }
+    }
+}
